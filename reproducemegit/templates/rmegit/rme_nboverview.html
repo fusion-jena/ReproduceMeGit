@@ -1,0 +1,49 @@
+{% block rme_repooverview %}
+
+
+<div class="table-responsive">
+  <table class="table table-hover sortable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Notebook Name</th>
+        <th scope="col">Language</th>
+        <th scope="col">Language Version</th>
+        <th scope="col">Kernel</th>
+        <th scope="col">nbformat</th>
+        <th scope="col">Maximum Execution Count</th>
+        <th scope="col">Total Cells</th>
+        <th scope="col">Total Code Cells</th>
+        <th scope="col">Total Code Cells with Output</th>
+        <th scope="col">Total Markdown Cells</th>
+        <th scope="col">Total Raw Cells</th>
+        <th scope="col">Total Cells with unknown formats</th>
+        <th scope="col">Total Empty Cells</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for notebook in notebooks %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <th>{{notebook.name}}</th>
+        <th>{{notebook.language}}</th>
+        <th>{{notebook.language_version}}</th>
+        <th>{{notebook.kernel}}</th>
+        <th>{{notebook.nbformat}}</th>
+        <th>{{notebook.max_execution_count}}</th>
+        <th>{{notebook.total_cells}}</th>
+        <th>{{notebook.code_cells}}</th>
+        <th>{{notebook.code_cells_with_output}}</th>
+        <th>{{notebook.markdown_cells}}</th>
+        <th>{{notebook.raw_cells}}</th>
+        <th>{{notebook.unknown_cell_formats}}</th>
+        <th>{{notebook.empty_cells}}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

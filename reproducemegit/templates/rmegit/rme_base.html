@@ -1,0 +1,33 @@
+{% extends "rmegit/rme_gitnb.html" %}
+<header>
+    {% block header %}
+  <div class="jumbotron" id="rmeheader">
+    <div class="container text-center">
+        <h1 class="display-4">Reproduce</h1>
+        <p class="lead"><a href="{{repository_info.Link}}" class="card-link">{{repository_info.Link}}</a></p>
+    </div>
+  </div>
+  {% endblock %}
+  </header>
+  {% block content %}
+
+  {% block rme_overview %}
+  {% endblock %}
+
+  {% block rme_tabsoverview %}
+  {% endblock %}
+
+  {% block rme_repooverview %}
+  {% endblock %}
+
+  {% block rme_nboverview %}
+  {% endblock %}
+
+  {% block rme_provbookoverview %}
+  {% endblock %}
+
+  {% block rme_provbookdiffoverview %}
+  {% endblock %}
+
+  {% endblock %}
+  <script src="{{ static_url_for('static', filename='build/main_js.bundle.js') }}"></script>

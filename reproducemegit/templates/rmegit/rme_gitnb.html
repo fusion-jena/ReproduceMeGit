@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-narrow">
+  <h1 class="mt-5">ReproduceMeGit</h1>
+    <br/>
+    <form id="registerForm" class="form form-register" method="POST" action="" role="form">
+           {{ form.csrf_token }}
+            <div class="form-group">
+                {{form.github_url.label}}
+                {{form.github_url(placeholder="Github Url", class_="form-control")}}
+            </div>
+            <p><input id="#reproduceGitBtn" class="btn btn-primary" type="submit" value=Reproduce></p>
+    </form>
+    <div id="loadingDiv">
+      <i class="fa fa-refresh fa-spin fa-5x fa-fw" aria-hidden="true"></i>
+    </div>
+</div>
+{% endblock %}

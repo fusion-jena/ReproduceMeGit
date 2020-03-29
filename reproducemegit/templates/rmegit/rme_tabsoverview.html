@@ -1,0 +1,67 @@
+{% block tabsoverview %}
+<div class="accordion pt-3" id="accordionExample">
+  <div class="card">
+    <div class="card-header justify-content-center" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseRepo" aria-expanded="true" aria-controls="collapseRepo">
+          Repository Overview
+        </button>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseNotebook" aria-expanded="true" aria-controls="collapseNotebook">
+          Notebook Overview
+        </button>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseModule" aria-expanded="true" aria-controls="collapseModule">
+            Modules Overview
+        </button>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseExecution" aria-expanded="true" aria-controls="collapseExecution">
+            Execution Overview
+        </button>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseProvBook" aria-expanded="true" aria-controls="collapseProvBook">
+          ProvBook Overview
+        </button>
+      </h2>
+    </div>
+    <div class="collapseContainer">
+      <div id="collapseRepo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            {% block rme_repooverview %}
+                {% include "rmegit/rme_repooverview.html" %}
+            {% endblock %}
+        </div>
+      </div>
+
+      <div id="collapseNotebook" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% block nboverview %}
+            {% include "rmegit/rme_nboverview.html" %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div id="collapseModule" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% block modulesoverview %}
+            {% include "rmegit/rme_modulesoverview.html" %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div id="collapseExecution" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% block executionoverview %}
+            {% include "rmegit/rme_executionoverview.html" %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div id="collapseProvBook" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% block provbookoverview %}
+            {% include "rmegit/rme_provbook.html" %}
+          {% endblock %}
+        </div>
+      </div>
+
+  </div>
+  </div>
+</div>
+{% endblock %}

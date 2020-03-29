@@ -1,0 +1,18 @@
+# Everything the developer needs in addition to the production requirements
+-r prod.txt
+
+# Testing
+pytest
+WebTest
+factory-boy
+pdbpp
+
+# Lint and code style
+#black
+flake8
+flake8-blind-except
+flake8-debugger
+flake8-docstrings
+flake8-isort
+isort
+pep8-naming

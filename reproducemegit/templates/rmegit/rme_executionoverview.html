@@ -1,0 +1,35 @@
+{% block executionoverview %}
+{% block modulesoverview %}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Notebook Name</th>
+          <th scope="col">Execution Status</th>
+          <th scope="col">Execution Message</th>
+          <th scope="col">Diff On Cells</th>
+          <th scope="col">Diff Count</th>
+          <th scope="col">Execution Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for nb_execution in notebook_execution %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <th>{{nb_execution.name}}</th>
+          <th>{{nb_execution.executionreason}}</th>
+          <th><span class="d-inline-block text-truncate" style="max-width: 150px;" data-toggle="tooltip" data-placement="top" title='{{nb_execution.msg}}'>{{nb_execution.msg}}
+          </span></th>
+          <th>{{nb_execution.diffoncell}}</th>
+          <th>{{nb_execution.diffcount}}</th>
+          <th>{{nb_execution.duration}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+{% endblock %}

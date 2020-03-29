@@ -1,0 +1,30 @@
+{% block provbookoverview %}
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Notebook Name</th>
+        <th scope="col">RDF</th>
+        <th scope="col">Binder</th>
+        <th scope="col">ProvBook</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for notebook in notebooks %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <th>{{notebook.name}}</th>
+        <th><a href="/rme_nb2rdf/{{repository_id}}/{{notebook.id}}" class="card-link">Export in RDF</a></th>
+        <th><a href="/rme_binderurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">
+          <img alt="Binder" src="https://mybinder.org/badge.svg">
+        </a></th>
+        <th><a href="/rme_jupyterserverurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">Local Server</a></th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
