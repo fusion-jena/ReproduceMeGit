@@ -5,13 +5,8 @@ import traceback
 import re
 import json
 import sys
-print("sys.path:%s", sys.path)
 import os
-print("os.path.dirname(__file__):%s", os.path.dirname(__file__))
-print("os.path.abspath(os.path.join(os.path.dirname(__file__), '.'):%s", os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
-print("os.path.abspath(os.path.join(os.path.dirname(__file__), '.'):%s", os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-print("sys.path:%s", sys.path)
 
 from math import ceil
 from copy import deepcopy
