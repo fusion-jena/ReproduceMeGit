@@ -36,6 +36,15 @@ $(document).ready(function () {
                         display: true,
                         position: 'bottom',
                         text: text,
+                        fontStyle: 'bold',
+                        fontSize: 14,
+                        fontColor: 'black',
+                    },
+                    legend: {
+                        labels: {
+                            fontStyle: 'bold',
+                            fontColor: 'black'
+                        }
                     },
                     responsive: true,
                     maintainAspectRatio: false,

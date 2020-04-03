@@ -8,7 +8,7 @@
         <th scope="col">Notebook Name</th>
         <th scope="col">RDF</th>
         <th scope="col">Binder</th>
-        <th scope="col">ProvBook</th>
+        <th scope="col">Link</th>
       </tr>
     </thead>
     <tbody>
@@ -16,11 +16,11 @@
       <tr>
         <th scope="row">{{ loop.index }}</th>
         <th>{{notebook.name}}</th>
-        <th><a href="/rme_nb2rdf/{{repository_id}}/{{notebook.id}}" class="card-link">Export in RDF</a></th>
-        <th><a href="/rme_binderurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">
+        <th><a href="/rme/nb2rdf/{{repository_id}}/{{notebook.id}}" class="card-link">Export in RDF</a></th>
+        <th><a href="/rme/binderurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">
           <img alt="Binder" src="https://mybinder.org/badge.svg">
         </a></th>
-        <th><a href="/rme_jupyterserverurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">Local Server</a></th>
+        <th><a href="/rme/jupyterserverurl/{{repository_id}}/{{notebook.id}}" target="_blank" class="card-link">ProvBook</a></th>
       </tr>
       {% endfor %}
     </tbody>

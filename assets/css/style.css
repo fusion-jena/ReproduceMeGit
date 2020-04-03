@@ -101,3 +101,14 @@ footer .footer-nav {
 #loadingDiv{
   display: none;
  }
+
+.chart-container {
+  height: 45vh;
+  width: 30%;
+  padding-left: 6px;
+  float: left;
+}
+
+.card-header .btn[aria-expanded=true] {
+  background-color: #BBDEFB;
+}

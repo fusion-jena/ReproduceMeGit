@@ -1,7 +1,10 @@
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-from matplotlib.figure import Figure
-import io
-import random
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
 from flask import Response
 from reproducemegit.analysis import repository_analysis
 

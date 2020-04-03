@@ -1,6 +1,6 @@
 
 {% block rme_overview %}
-<div id="rmoverview" class="carousel slide pt-3" data-ride="carousel">
+<div id="rmoverview" class="carousel slide pt-3" data-ride="carousel" data-interval="10000">
     <!-- Indicators -->
     <ul class="carousel-indicators">
       <li data-target="#rmoverview" data-slide-to="0" class="active"></li>
@@ -13,13 +13,13 @@
     <div class="carousel-inner bg-light">
       <div class="carousel-item active text-center">
         <div>
-          <div class="chart-container" style="height:45vh; width:30%; float:left; ">
+          <div class="chart-container">
             <canvas id="nbfinishedunfinishedexecutions-chart"></canvas>
           </div>
-          <div class="chart-container" style="height:45vh; width:30%; float:left; ">
+          <div class="chart-container" style="padding-left: 10px;">
             <canvas id="nbresultsdifference-chart"></canvas>
           </div>
-          <div class="chart-container" style="height:45vh; width:30%; float:right; ">
+          <div class="chart-container" style="width: 40%; padding-left: 0px;">
             <canvas id="exceptionerrornb-chart"></canvas>
           </div>
         </div>

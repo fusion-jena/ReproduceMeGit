@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
+
 """Helper utilities and decorators."""
 from flask import flash
 

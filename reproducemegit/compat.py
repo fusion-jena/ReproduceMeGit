@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
 """Python 2/3 compatibility module."""
 import sys
 

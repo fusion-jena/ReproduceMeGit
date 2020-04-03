@@ -1,3 +1,11 @@
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
+
 import os
 
 import nbformat
@@ -145,6 +153,8 @@ def github_crawler(github_url):
 
 def get_notebook(repository_id, notebook_id):
     with connect() as session:
+        nbconvert_rdf = ''
+        name = ''
         filters = [
                 Repository.id == repository_id
             ]
@@ -160,8 +170,13 @@ def get_notebook(repository_id, notebook_id):
         with mount_basedir():
             if repository.path.exists():
                 execution_path = (config.EXECUTION_DIR / repository.hash_dir2)
+                if os.path.exists(execution_path):
+                    notebook_path = execution_path
+                else:
+                    notebook_path = repository.path
+
             try:
-                with open(str(execution_path / name)) as ofile:
+                with open(str(notebook_path / name)) as ofile:
                     notebook = ofile.read()
                     nbtordfconverter = nb2rdf.NBToRDFConverter()
                     notebook_json = nbformat.reads(notebook, as_version=4)
@@ -172,3 +187,4 @@ def get_notebook(repository_id, notebook_id):
                     return str(nbconvert_rdf), name
             except OSError as e:
                 vprint(3, "Failed to open notebook {}".format(e))
+                return  str(nbconvert_rdf), name

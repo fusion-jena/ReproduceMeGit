@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Public section, including homepage and signup."""
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
+
 from flask import (
     Blueprint,
     current_app,
@@ -33,7 +40,7 @@ def about():
     return render_template("rmegit/about.html")
 
 
-@blueprint.route("/reproduceme", methods=["GET", "POST"])
+@blueprint.route("/rme", methods=["GET", "POST"])
 def reproduce():
     """Reproduce Page"""
     if request.method == "POST":
@@ -102,13 +109,16 @@ def get_cell_type_plot(repository_id):
         return ('', 204)
 
 
-@blueprint.route("/rme_nb2rdf/<repository_id>/<notebook_id>", methods=["GET", "POST"])
+@blueprint.route("/rme/nb2rdf/<repository_id>/<notebook_id>", methods=["GET", "POST"])
 def rme_nb2rdf(repository_id, notebook_id):
     """Reproduce Results Page"""
     nb2rdf, filename = get_notebook(repository_id, notebook_id)
-    return Response(nb2rdf, mimetype="text/turtle", headers={"Content-disposition": "attachment; filename=" + filename + ".ttl"})
+    if nb2rdf:
+        return Response(nb2rdf, mimetype="text/turtle", headers={"Content-disposition": "attachment; filename=" + filename + ".ttl"})
+    else:
+        return ('', 204)
 
-@blueprint.route("/rme_binderurl/<repository_id>/<notebook_id>")
+@blueprint.route("/rme/binderurl/<repository_id>/<notebook_id>")
 def rme_binderurl(repository_id, notebook_id):
     """Reproduce Results Page"""
     repository_name, repository_path, notebook_name = repository_analysis.get_repository_notebook(repository_id, notebook_id)
@@ -116,7 +126,7 @@ def rme_binderurl(repository_id, notebook_id):
         binder_url ="https://mybinder.org/v2/gh/" + str(repository_name) + "/master/?filepath=" + str(notebook_name)
         return redirect(binder_url)
 
-@blueprint.route("/rme_jupyterserverurl/<repository_id>/<notebook_id>")
+@blueprint.route("/rme/jupyterserverurl/<repository_id>/<notebook_id>")
 def rme_jupyterserverurl(repository_id, notebook_id):
     """Reproduce Results Page"""
     repository_name, repository_path, notebook_name = repository_analysis.get_repository_notebook(repository_id, notebook_id)

@@ -1,3 +1,11 @@
+"""
+Sheeba Samuel
+Heinz-Nixdorf Chair for Distributed Information Systems
+Friedrich Schiller University Jena, Germany
+Email: sheeba.samuel@uni-jena.de
+Website: https://github.com/Sheeba-Samuel
+"""
+
 from reproducemegit import settings
 import pandas as pd
 from reproducemegit.jupyter_reproducibility.db import connect, Repository, Notebook, Query, NotebookModule, Execution
@@ -245,7 +253,7 @@ def get_exception_error(combined, executions):
         stdinnotimplemented_error = len(combined[(combined["new_reason"] == "StdinNotImplementedError")])
         success_nb = len(get_finished_executions(executions))
         exception_error_data = [
-            import_error, modulenotfound_error, name_error, filenotfound_error,
+            import_error, filenotfound_error, modulenotfound_error, name_error,
             io_error, os_error, operational_error, type_error, value_error,
             http_error, syntax_error, attribute_error, stdinnotimplemented_error, success_nb
         ]
@@ -253,13 +261,13 @@ def get_exception_error(combined, executions):
         exception_error = {
             'data': exception_error_data,
             'labels': exception_error_labels,
-            'title': 'Execptions during Notebook Execution',
+            'title': 'Exceptions during Notebook Execution',
         }
     else:
         exception_error = {
             'data': [],
             'labels': exception_error_labels,
-            'title': 'Execptions during Notebook Execution',
+            'title': 'Exceptions during Notebook Execution',
         }
 
     return exception_error
@@ -290,7 +298,7 @@ def get_nb_finished_unfinished_executions(executions):
     nb_finished_unfinished_executions = {
         'data': nb_finished_unfinished_executions_data,
         'labels': nb_finished_unfinished_executions_labels,
-        'title': 'Finished vs Unfinished Executions of Notebooks in the Reposotory'
+        'title': 'Finished vs Unfinished Executions'
     }
     return nb_finished_unfinished_executions
 
