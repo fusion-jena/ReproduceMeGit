@@ -4,7 +4,7 @@ ReproduceMeGit is a visualization tool for analyzing the reproducibility of Jupy
 
 Demo
 ----
-A video showing the use of ReproduceMeGit with an example is available [here]().
+A video showing the use of ReproduceMeGit with an example is available [here](https://doi.org/10.6084/m9.figshare.12084393.v1).
 
 Installation
 -------------
