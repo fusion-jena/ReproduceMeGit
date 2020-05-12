@@ -96,6 +96,7 @@ pexpect
 pickleshare
 prometheus-client
 prompt-toolkit
+provbook
 psutil
 psycopg2-binary
 ptyprocess
