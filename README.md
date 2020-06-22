@@ -6,6 +6,16 @@ Demo
 ----
 A video showing the use of ReproduceMeGit with an example is available [here](https://doi.org/10.6084/m9.figshare.12084393.v1).
 
+
+More Information
+----------------
+Preprint: [ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](https://fusion.cs.uni-jena.de/fusion/wp-content/uploads/2020/06/ReproduceMeGit_Samuel.pdf)  
+
+Talk: [ProvenanceWeek 2020: ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](https://youtu.be/rOza4dIFWaI)
+
+
+
+
 Installation
 -------------
 [ReproduceMeGit Wiki](https://github.com/fusion-jena/ReproduceMeGit/wiki)
