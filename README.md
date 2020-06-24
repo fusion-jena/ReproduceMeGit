@@ -9,9 +9,11 @@ A video showing the use of ReproduceMeGit with an example is available [here](ht
 
 More Information
 ----------------
-Preprint: [ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](https://fusion.cs.uni-jena.de/fusion/wp-content/uploads/2020/06/ReproduceMeGit_Samuel.pdf)  
+Preprint: [ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](http://arxiv.org/abs/2006.12110)  
 
 Talk: [ProvenanceWeek 2020: ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](https://youtu.be/rOza4dIFWaI)
+
+Slides: [ProvenanceWeek 2020: ReproduceMeGit: A Visualization Tool for Analyzing Reproducibility of Jupyter Notebooks](https://doi.org/10.6084/m9.figshare.12529604.v1)
 
 
 
