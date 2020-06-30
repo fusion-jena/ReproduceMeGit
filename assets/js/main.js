@@ -11,6 +11,7 @@ require('popper.js');
 require('bootstrap');
 require('chart.js');
 require('chartjs-plugin-datalabels');
+require('d3-selection-multi');
 
 require.context(
   '../img', // context folder

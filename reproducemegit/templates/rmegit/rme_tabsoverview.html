@@ -18,6 +18,9 @@
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseProvBook" aria-expanded="false" aria-controls="collapseProvBook">
           ProvBook Overview
         </button>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseUserInteraction" aria-expanded="false" aria-controls="collapseUserInteraction">
+          User Interaction Overview
+        </button>
       </h2>
     </div>
     <div class="collapseContainer">
@@ -57,6 +60,14 @@
         <div class="card-body">
           {% block provbookoverview %}
             {% include "rmegit/rme_provbook.html" %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div id="collapseUserInteraction" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% block useroverview %}
+            {% include "rmegit/rme_userinteraction.html" %}
           {% endblock %}
         </div>
       </div>

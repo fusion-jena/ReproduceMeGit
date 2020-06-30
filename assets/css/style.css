@@ -1,114 +1,147 @@
+
+
 /* =============================================================================
    App specific CSS file.
    ========================================================================== */
 
+
 /* universal */
 
 html {
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 body {
-  padding-top: 60px;
+	padding-top: 60px;
 }
 
 section {
-  overflow: auto;
+	overflow: auto;
 }
 
 textarea {
-  resize: vertical;
+	resize: vertical;
 }
 
-.container-narrow{
-  margin: 0 auto;
-  max-width: 700px;
+.container-narrow {
+	margin: 0 auto;
+	max-width: 700px;
 }
+
 
 /* Forms */
 
 .navbar-form input[type="text"],
 .navbar-form input[type="password"] {
-  width: 180px;
+	width: 180px;
 }
 
-
 .form-register {
-  width: 50%;
+	width: 50%;
 }
 
 .form-register .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #999999;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #999999;
 }
 
 footer a {
-  color: #999999;
+	color: #999999;
 }
 
 footer p {
-  float: right;
-  margin-right: 25px;
+	float: right;
+	margin-right: 25px;
 }
 
 footer ul {
-  list-style: none;
+	list-style: none;
 }
 
 footer ul li {
-  float: left;
-  margin-left: 10px;
+	float: left;
+	margin-left: 10px;
 }
 
 footer .company {
-  float: left;
-  margin-left: 25px;
+	float: left;
+	margin-left: 25px;
 }
 
 footer .footer-nav {
-  float: right;
-  margin-right: 25px;
-  list-style: none;
+	float: right;
+	margin-right: 25px;
+	list-style: none;
 }
 
 #rmeheader {
-  padding: 1rem;
+	padding: 1rem;
 }
 
 .carousel-control-next,
 .carousel-control-prev {
-    filter: invert(100%);
+	filter: invert(100%);
 }
 
 .collapseContainer {
-  min-height: 500px;
+	min-height: 500px;
 }
 
-#loadingDiv{
-  display: none;
- }
+#loadingDiv {
+	display: none;
+}
 
 .chart-container {
-  height: 45vh;
-  width: 30%;
-  padding-left: 6px;
-  float: left;
+	height: 45vh;
+	width: 30%;
+	padding-left: 6px;
+	float: left;
 }
 
 .card-header .btn[aria-expanded=true] {
-  background-color: #BBDEFB;
+	background-color: #BBDEFB;
+}
+
+.dropdown-menu {
+	height: 200px;
+	overflow-y: auto;
+}
+
+.link {
+	stroke: #999;
+	stroke-opacity: .6;
+	stroke-width: 1px;
+}
+
+.svg-container {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+	vertical-align: center;
+	overflow: hidden;
+}
+
+.svg-content {
+	display: inline-block;
+	/* position: absolute;
+  top: 0;
+  left: 0; */
+	width: 100%;
+	height: 100%;
 }

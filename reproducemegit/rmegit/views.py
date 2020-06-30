@@ -20,8 +20,10 @@ from flask import (
 from reproducemegit.utils import flash_errors
 from reproducemegit.analysis import repository_analysis
 from reproducemegit.jupyter_reproducibility import config
+from reproducemegit.jupyter_reproducibility.utils import vprint
 from reproducemegit.rmegit.forms import ReproduceForm
 from reproducemegit.rmegit.repository_crawler import github_crawler, get_notebook
+from reproducemegit.rmegit import consts
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import io
@@ -64,6 +66,13 @@ def reproduceresults(repository_id):
         **locals()
     )
 
+@blueprint.route("/get_network_json/<repository_id>/<notebook_id>", defaults={'cell_types': consts.ALL_CELL_TYPE})
+@blueprint.route("/get_network_json/<repository_id>/<notebook_id>/<cell_types>", methods=["GET", "POST"])
+def get_network_json(repository_id, notebook_id, cell_types):
+    """Get Execution Order of Cells in Notebooks of a Repository"""
+    execution_order_json = repository_analysis.get_execution_order_json(repository_id, notebook_id, cell_types)
+    return execution_order_json
+
 @blueprint.route("/reproducednb/<repository_id>")
 def reproducednb(repository_id):
     reproducednb = repository_analysis.get_reproduced_nb(repository_id)
@@ -74,7 +83,7 @@ def reproducednb(repository_id):
 
 @blueprint.route("/nblanguage/<repository_id>")
 def get_nblanguage_plot(repository_id):
-    """ renders the plot
+    """ renders the Notebook Language plot
     """
     fig = repository_analysis.get_nblanguage(repository_id)
     if fig:
@@ -86,8 +95,7 @@ def get_nblanguage_plot(repository_id):
 
 @blueprint.route("/nblanguageversion/<repository_id>")
 def get_nblanguage_version_plot(repository_id):
-    """ renders the plot
-    """
+    """ renders the Notebook Language Version plot"""
     fig = repository_analysis.get_nblanguage_version(repository_id)
     if fig:
         output = io.BytesIO()
@@ -98,7 +106,7 @@ def get_nblanguage_version_plot(repository_id):
 
 @blueprint.route("/celltype/<repository_id>")
 def get_cell_type_plot(repository_id):
-    """ renders the plot
+    """ renders the Cell type plot
     """
     fig = repository_analysis.get_cell_type(repository_id)
     if fig:
@@ -111,7 +119,7 @@ def get_cell_type_plot(repository_id):
 
 @blueprint.route("/rme/nb2rdf/<repository_id>/<notebook_id>", methods=["GET", "POST"])
 def rme_nb2rdf(repository_id, notebook_id):
-    """Reproduce Results Page"""
+    """Get Notebook RDF"""
     nb2rdf, filename = get_notebook(repository_id, notebook_id)
     if nb2rdf:
         return Response(nb2rdf, mimetype="text/turtle", headers={"Content-disposition": "attachment; filename=" + filename + ".ttl"})
@@ -120,7 +128,7 @@ def rme_nb2rdf(repository_id, notebook_id):
 
 @blueprint.route("/rme/binderurl/<repository_id>/<notebook_id>")
 def rme_binderurl(repository_id, notebook_id):
-    """Reproduce Results Page"""
+    """Access to Binder"""
     repository_name, repository_path, notebook_name = repository_analysis.get_repository_notebook(repository_id, notebook_id)
     if repository_name and notebook_name:
         binder_url ="https://mybinder.org/v2/gh/" + str(repository_name) + "/master/?filepath=" + str(notebook_name)
@@ -128,7 +136,7 @@ def rme_binderurl(repository_id, notebook_id):
 
 @blueprint.route("/rme/jupyterserverurl/<repository_id>/<notebook_id>")
 def rme_jupyterserverurl(repository_id, notebook_id):
-    """Reproduce Results Page"""
+    """Access to Local Jupyter Notebook for ProvBook"""
     repository_name, repository_path, notebook_name = repository_analysis.get_repository_notebook(repository_id, notebook_id)
     if repository_name and repository_path and notebook_name:
         notebook_url = str(repository_path) + "/" + str(notebook_name)

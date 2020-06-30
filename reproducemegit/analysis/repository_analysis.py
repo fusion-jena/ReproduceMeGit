@@ -8,9 +8,9 @@ Website: https://github.com/Sheeba-Samuel
 
 from reproducemegit import settings
 import pandas as pd
-from reproducemegit.jupyter_reproducibility.db import connect, Repository, Notebook, Query, NotebookModule, Execution
-from reproducemegit.jupyter_reproducibility.utils import human_readable_duration
-from reproducemegit.rmegit import nb2rdf
+from reproducemegit.jupyter_reproducibility.db import connect, Repository, Notebook, Query, NotebookModule, Execution, Cell
+from reproducemegit.jupyter_reproducibility.utils import human_readable_duration, vprint
+from reproducemegit.rmegit import nb2rdf, consts
 from reproducemegit.analysis.analysis_helpers import display_counts, describe_processed
 from reproducemegit.analysis.analysis_helpers import distribution_with_boxplot, savefig, boxplot_distribution
 from reproducemegit.analysis.analysis_helpers import var, relative_var, calculate_auto, close_fig
@@ -624,3 +624,107 @@ def get_nb_with_execution_count(repository_id):
         with_execution_count = notebooks[notebooks.max_execution_count >= -0]
         nb_with_execution_count = len(with_execution_count)
         return nb_with_execution_count
+
+def get_cell_info(repository_id, notebook_id):
+    with connect() as session:
+        filters = [
+            Cell.repository_id == repository_id,
+            Cell.notebook_id == notebook_id,
+        ]
+        query = (
+            session.query(Cell)
+            .filter(*filters)
+        )
+        notebook_cells = []
+        for cell in query:
+            print("cell")
+            notebook_cell_obj = {}
+            notebook_cell_obj['id'] = cell.id
+            notebook_cell_obj['repository_id'] = cell.repository_id
+            notebook_cell_obj['notebook_id'] = cell.notebook_id
+            notebook_cell_obj['index'] = cell.index
+            notebook_cell_obj['cell_type'] = cell.cell_type
+            notebook_cell_obj['execution_count'] = cell.execution_count
+            notebook_cell_obj['lines'] = cell.lines
+            notebook_cell_obj['output_formats'] = cell.output_formats
+            notebook_cell_obj['source'] = cell.source
+            notebook_cell_obj['python'] = cell.python
+            notebook_cells.append(notebook_cell_obj)
+        return notebook_cells
+
+
+def get_execution_order_json(repository_id, notebook_id, cell_types):
+    with connect() as session:
+        # Get Execution Order of Cells in a Notebook of a Repository
+
+        # Filter on the type of notebook cell
+        filters = [
+            Cell.repository_id == repository_id,
+            Cell.notebook_id == notebook_id,
+        ]
+        if int(cell_types) == consts.CODE_CELL_TYPE:
+            filters += [
+                Cell.cell_type == 'code'
+            ]
+        elif int(cell_types) == consts.OTHER_CELL_TYPE:
+            filters += [
+                Cell.cell_type != 'code'
+            ]
+
+
+        query = (
+            session.query(Cell)
+            .filter(*filters)
+        )
+
+        # Create a dictionary with Cell Index and Cell Execution Count
+        notebook_cells_json = []
+        notebook_cell_obj = {}
+        for cell in query:
+            if cell.execution_count is not None:
+                notebook_cell_obj[cell.index] = int(cell.execution_count)
+
+        notebook_cells_json = {k: v for k, v in sorted(notebook_cell_obj.items(), key=lambda item: item[1])}
+
+        # Sort the Execution order based on Execution Count
+        execution_order = []
+        for k, v in sorted(notebook_cell_obj.items(), key=lambda item: item[1]):
+            execution_order.append(k)
+
+        # JSON for the execution order
+        execution_order_json = {
+            "nodes": [],
+            "links": []
+        }
+        node_name = ''
+        node_label = 'Cell'
+        node_id = ''
+        source = ''
+        target = ''
+
+        node_obj = {}
+        link_obj = {
+            "source": '',
+            "target": '',
+            "type": "followedby"
+        }
+        for cell in query:
+            node_obj = {}
+            node_name = cell.execution_count
+            node_id = cell.index
+            if node_name:
+                node_obj["name"] = node_name
+            else:
+                node_obj["name"] = "-"
+            node_obj["id"] = node_id
+            node_obj["label"] = "Cell " + str(node_id)
+
+            execution_order_json["nodes"].append(node_obj)
+
+        for item, next_item in zip(execution_order, execution_order[1:]):
+            link_obj = {}
+            link_obj["source"] = item
+            link_obj["target"] = next_item
+            link_obj["type"] = 'followedby'
+            execution_order_json["links"].append(link_obj)
+        return execution_order_json

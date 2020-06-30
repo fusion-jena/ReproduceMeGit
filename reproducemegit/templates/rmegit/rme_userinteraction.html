@@ -1,0 +1,31 @@
+
+
+{% block useroverview %}
+<div class="dropdown">
+   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Notebooks
+   </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for notebook in notebooks %}
+      <!-- <a class="dropdown-item" value={{notebook.id}} href="{{repository_id}}/{{notebook.id}}">{{notebook.name}}</a> -->
+      <a class="dropdown-item" value={{notebook.id}} href="#">{{notebook.name}}</a>
+      {% endfor %}
+   </div>
+</div>
+<!-- Checkbox for cell type selection -->
+<div id="celltypeform" style="visibility: hidden;">
+   <form>
+      <fieldset>
+         <legend>Choose the cell type:</legend>
+         <div id="notebookcelltype">
+            <label><input type="checkbox" name="codecells" value="codecells" checked /> Code Cells</label>
+            <label><input type="checkbox" name="othercells" value="othercells" checked/> Other Cells</label>
+         </div>
+      </fieldset>
+   </form>
+</div>
+<!-- Svg Container for the execution order graph -->
+<div class="svg-container">
+   <svg width="960" height="600"></svg>
+</div>
+{% endblock %}
