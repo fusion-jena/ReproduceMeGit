@@ -1,0 +1,5 @@
+node_modules
+projects
+package-lock.json
+__pycache__
+reproducemegit/static/
